@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>turingbb</type>
+	<automaton>
+		<!--The list of states.-->
+		<block id="0" name="q0">
+			<tag>Machine0</tag>
+			<x>71.0</x>
+			<y>114.0</y>
+			<initial/>
+		</block>
+		<block id="1" name="q1">
+			<tag>Machine1</tag>
+			<x>186.0</x>
+			<y>114.0</y>
+			<final/>
+		</block>
+		<!--The list of transitions.-->
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>a</read>
+			<write>a</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>b</read>
+			<write>b</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>A</read>
+			<write>a</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>B</read>
+			<write>b</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read/>
+			<write/>
+			<move>R</move>
+		</transition>
+		<!--The list of automata-->
+		<Machine0/>
+		<Machine1/>
+	</automaton>
+</structure>

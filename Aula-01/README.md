@@ -3,7 +3,7 @@
 # Revisando
 Primeiras aulas vão ser revisão, então você precisa se lembrar da matéria de LFA.  
 
-## Máquina de Turing 
+## Máquina de Turing
 Dada a entrada 1011  
 `bbbb1011bbbb`  
 b normalmente é usado para blank.  
@@ -68,4 +68,19 @@ Tamanho do alfabeto {a,b,c} = 3 letras
 3x3**¹** + 1x3<b><sup>0</sup></b>  
 A casa em que se encontra (começando a contagem da esquerda)  
 
-28:39
+# Tese de Church
+(é uma tese justamente pois não tem como se provar)
+
+> Uma função é computável se somente se é λ-definível  
+
+É equivalente a
+
+> Uma função é computável se somente se é computável por máquina de Turing
+
+O que é um função computável?  
+É uma função que consegue receber outra função como entrada e fazer o que aquela função faria.  
+
+O que é uma máquina ser programável?  
+Uma máquina programável é uma máquina que você pode usar para programar.  
+
+Computable Function: https://en.wikipedia.org/wiki/Computable_function   
