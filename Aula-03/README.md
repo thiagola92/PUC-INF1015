@@ -89,7 +89,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
 
 * **Adição**:
   * +(0, x) = P<sub>1</sub><sup>1</sup>(x)
-  * +(n+1, x) = S(P<sub>1</sub><sup>1</sup>(+(n, x), n, x))
+  * +(n+1, x) = S(P<sub>3</sub><sup>1</sup>(+(n, x), n, x))
   * Como essa sintaxe pode ser difícil de entender, comece tirando P<sub>1</sub><sup>1</sup>.
     * +(0, x) = x
     * +(n+1, x) = S(+(n, x))
@@ -112,20 +112,76 @@ Usando as funções anteriores conseguimos definir muitas coisas
       * S(S(3, 1, 3), 2, 3)
       * S(4, 2, 4, 2, 3)
       * 5, 3, 5, 3, 4
-    * Por isso utilizamos a função de projeção/seleção.
+  * Por isso utilizamos a função de projeção/seleção.
   * +(0, x) = P<sub>1</sub><sup>1</sup>(x)
-  * +(n+1, x) = S(P<sub>1</sub><sup>1</sup>(+(n, x), n, x))
+  * +(n+1, x) = S(P<sub>3</sub><sup>1</sup>(+(n, x), n, x))
     * +(2, 3)
-    * S(P<sub>1</sub><sup>1</sup>(+(1, 3), 2, 3))   `eu estou executando logo a função de projeção para ficar menor`
+    * S(P<sub>3</sub><sup>1</sup>(+(1, 3), 2, 3))   `eu estou executando logo a função de projeção para ficar menor`
     * S(+(1, 3))
-    * S(S(P<sub>1</sub><sup>1</sup>(+(0, 3), 1, 3)))   `eu estou executando logo a função de projeção para ficar menor`
+    * S(S(P<sub>3</sub><sup>1</sup>(+(0, 3), 1, 3)))   `eu estou executando logo a função de projeção para ficar menor`
     * S(S(+(0, 3)))
     * S(S(P<sub>1</sub><sup>1</sup>(3)))
     * S(S(3))
     * S(4)
     * 5
-
-
-
-
-21:56
+* **Multiplicação**:
+  * \*(0,x) = Z(x) = 0
+  * \*(n+1, x) = +(P<sub>3</sub><sup>1</sup>(\*(n, x), n, x), x)
+  * n é quantas vezes multiplicar, x é o número a ser multiplicado
+  * Exemplo:
+    * \*(2, 3)
+    * +(P<sub>3</sub><sup>1</sup>(\*(1, 3), 1, 3), 3) `eu sempre faço primeiro a função projeção porque n afeta o calculo e diminui o tamanho`
+    * +(\*(1, 3), 3)
+    * +(+(P<sub>1</sub><sup>1</sup>(\*(0, 3), 0, 3), 3), 3)
+    * +(+(\*(0, 3), 3), 3)
+    * +(+(0, 3), 3) `já provamos a soma, então não vou escrever de novo`
+    * +(3, 3)
+    * 6
+* **Exponenciação**:
+  * Exp(0, x) = 1
+  * Exp(n+1, x) = \*(P<sub>3</sub><sup>1</sup>(Exp(n, x), n, x), x)
+  * n é o expoente, x é a base
+  * Exemplo:
+    * Exp(2, 3)
+    * \*(P<sub>3</sub><sup>1</sup>(Exp(1, 3), 1, 3), 3)
+    * \*(Exp(1, 3), 3)
+    * \*(\*(P<sub>3</sub><sup>1</sup>(Exp(0, 3), 0, 3), 3), 3)
+    * \*(\*(Exp(0, 3), 3), 3)
+    * \*(\*(1, 3), 3)
+    * \*(3, 3)
+    * 9
+* **Sinal**:
+  * sn(0) = 0
+  * sn(n+1) = P<sub>2</sub><sup>1</sup>(C<sub>1</sub>, n) = 1
+  * É tipo verdadeiro e falso em linguagem de programação, 0 é falso e tudo diferente é verdadeiro (um)
+* **Teste de zero**:
+  * sn(0) = 1
+  * sn(n+1) = P<sub>2</sub><sup>1</sup>(C<sub>0</sub>, n) = 0
+  * Oposto da de cima
+* **Predecessor**:
+  * Pred(0) = 0
+  * Pred(n+1) = P<sub>2</sub><sup>2</sup>(f(n), n)
+  * A função f é indiferente, pois você pega o segundo valor (n)
+* **Subtração limitada**:
+  * SubL(0, x) = P<sub>1</sub><sup>1</sup>(x)
+  * SubL(n+1, x) = Pred(P<sub>3</sub><sup>1</sup>(SubL(n, x), n, x))
+  * n é o por quanto você está subtraindo x, ou seja, o calculo é x - n
+  * É uma subtração limitada pois não pode ir para abaixo de 0
+  * Exemplo:
+    * SubL(2, 3)
+    * Pred(P<sub>3</sub><sup>1</sup>(SubL(1, 3), 1, 3))
+    * Pred(SubL(1, 3))
+    * Pred(Pred(P<sub>3</sub><sup>1</sup>(SubL(0, 3), 0, 3)))
+    * Pred(Pred(SubL(0, 3)))
+    * Pred(Pred(3)) `sempre usando conhecimento anterior sem problema`
+    * Pred(2)
+    * 1
+  * Exemplo 2:
+    * SubL(2, 1)
+    * Pred(P<sub>3</sub><sup>1</sup>(SubL(1, 1), 1, 1))
+    * Pred(SubL(1, 1))
+    * Pred(Pred(P<sub>3</sub><sup>1</sup>(SubL(0, 1), 0, 1)))
+    * Pred(Pred(SubL(0, 1)))
+    * Pred(Pred(1))
+    * Pred(0)
+    * 0
