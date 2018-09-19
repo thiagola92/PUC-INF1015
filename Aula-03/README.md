@@ -166,7 +166,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
   * SubL(0, x) = P<sub>1</sub><sup>1</sup>(x)
   * SubL(n+1, x) = Pred(P<sub>3</sub><sup>1</sup>(SubL(n, x), n, x))
   * n é o por quanto você está subtraindo x, ou seja, o calculo é x - n
-  * É uma subtração limitada pois não pode ir para abaixo de 0
+  * É uma subtração limitada pois não pode ir abaixo de 0
   * Exemplo:
     * SubL(2, 3)
     * Pred(P<sub>3</sub><sup>1</sup>(SubL(1, 3), 1, 3))
