@@ -153,19 +153,19 @@ Usando as funções anteriores conseguimos definir muitas coisas
 * **Sinal**:
   * sn(0) = 0
   * sn(n+1) = P<sub>2</sub><sup>1</sup>(C<sub>1</sub>, n) = 1
-  * É tipo verdadeiro e falso em linguagem de programação, 0 é falso e tudo diferente é verdadeiro (um)
+  * É tipo verdadeiro e falso em linguagem de programação, 0 é falso e 1 é verdadeiro.  
 * **Teste de zero**:
-  * sn(0) = 1
-  * sn(n+1) = P<sub>2</sub><sup>1</sup>(C<sub>0</sub>, n) = 0
+  * !sn(0) = 1
+  * !sn(n+1) = P<sub>2</sub><sup>1</sup>(C<sub>0</sub>, n) = 0
   * Oposto da de cima
 * **Predecessor**:
   * Pred(0) = 0
   * Pred(n+1) = P<sub>2</sub><sup>2</sup>(f(n), n)
   * A função f é indiferente, pois você pega o segundo valor (n)
-* **Subtração limitada**:
+* **Subtração limitada (Monus)**:
   * SubL(0, x) = P<sub>1</sub><sup>1</sup>(x)
   * SubL(n+1, x) = Pred(P<sub>3</sub><sup>1</sup>(SubL(n, x), n, x))
-  * n é o por quanto você está subtraindo x, ou seja, o calculo é x - n
+  * É o por quanto você está subtraindo x, ou seja, o calculo é x - n
   * É uma subtração limitada pois não pode ir abaixo de 0
   * Exemplo:
     * SubL(2, 3)
@@ -185,3 +185,121 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * Pred(Pred(1))
     * Pred(0)
     * 0
+* **Menor Igual**:
+  * MenorI(0, x) = 1
+  * MenorI(n+1, x) = !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(n, x), n, x)), x))
+  * A idéia é verificar se x < n + 1, vai retornar 1 se for e 0 se não for.
+  * Exemplo:
+    * MenorI(3, 2)
+    * !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 2), 2, 2)), 2))
+    * !sn(SubL(S(2), 2))
+    * !sn(SubL(3, 2))
+    * !sn(0)
+    * 1
+  * Exemplo 2:
+    * MenorI(2, 3)
+    * !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(1, 3), 1, 3)), 3))
+    * !sn(SubL(S(1), 3))
+    * !sn(SubL(2, 3))
+    * !sn(1)
+    * 0
+  * Exemplo 3:
+    * MenorI(3, 3)
+    * !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 3), 2, 3)), 3))
+    * !sn(SubL(S(2), 3))
+    * !sn(SubL(3, 3))
+    * !sn(0)
+    * 1
+* **Estritamente Maior**:
+  * Maior(0, x) = 0
+  * Maior(n+1, x) = !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(n, x), n, x)), x))
+  * Usa a lógica do menor igual, se for verdade que é menor igual então claramente não é maior, caso contrario é maior.
+  * Exemplo:
+    * Maior(3, 2)
+    * !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(2, 2), 2, 2)), 2))
+    * !sn(MenorI(S(2), 2))
+    * !sn(MenorI(3, 2))
+    * !sn(1)
+    * 0
+  * Exemplo 2:
+    * Maior(2, 3)
+    * !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(1, 3), 1, 3)), 3))
+    * !sn(MenorI(S(1), 3))
+    * !sn(MenorI(2, 3))
+    * !sn(0)
+    * 1
+  * Exemplo 3:
+    * Maior(3, 3)
+    * !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(2, 3), 2, 3)), 3))
+    * !sn(MenorI(S(2), 3))
+    * !sn(MenorI(3, 3))
+    * !sn(1)
+    * 0
+* **Diferença Absoluta**:
+  * DifAbs(0, x) = x
+  * DifAbs(n+1, x) = +(SubL(S(P<sub>3</sub><sup>2</sup>(DifAbs(n, x), n, x)), x), SubL(x, S(n)))
+  * Isso faz nada mais que |a - b|
+  * Usando subtração limitada, melhor maneira de fazer isso é (a - b) + (b - a)
+  * Exemplo:
+    * DifAbs(2, 3)
+    * +(SubL(S(P<sub>3</sub><sup>2</sup>(DifAbs(1, 3), 1, 3)), 3), SubL(3, S(1)))
+    * +(SubL(S(1), 3), SubL(3, S(1)))
+    * +(SubL(2, 3), SubL(3, S(1)))
+    * +(SubL(2, 3), SubL(3, 2))
+    * +(1, SubL(3, 2))
+    * +(1, 0)
+    * 1
+* **Igualdade**:
+  * Igual(0, x) = !sn(x)
+  * Igual(n+1, x) = !sn(DifAbs(S(P<sub>3</sub><sup>2</sup>(Igual(n, x), n, x)), x))
+  * Se a diferença absoluta for 0 então é verdade que é igual (retorna 1 para verdadeiro, 0 para falso)
+  * Exemplo:
+    * Igual(2, 3)
+    * !sn(DifAbs(S(P<sub>3</sub><sup>2</sup>(Igual(1, 3), 1, 3)), 3))
+    * !sn(DifAbs(S(1), 3))
+    * !sn(DifAbs(2, 3))
+    * !sn(1)
+    * 0
+  * Exemplo 2:
+    * Igual(3, 3)
+    * !sn(DifAbs(S(P<sub>3</sub><sup>2</sup>(Igual(2, 3), 2, 3)), 3))
+    * !sn(DifAbs(S(2), 3))
+    * !sn(DifAbs(3, 3))
+    * !sn(0)
+    * 1
+* **Impar**:
+  * impar(0) = 0
+  * impar(n+1) = !sn(P<sub>3</sub><sup>1</sup>(impar(n), n))
+  * Exemplo:
+    * impar(3)
+    * !sn(P<sub>3</sub><sup>1</sup>(impar(2), 2))
+    * !sn(impar(2))
+    * !sn(!sn(P<sub>3</sub><sup>1</sup>(impar(1), 1)))
+    * !sn(!sn(impar(1)))
+    * !sn(!sn(!sn(P<sub>3</sub><sup>1</sup>(impar(0)), 0)))
+    * !sn(!sn(!sn(impar(0))))
+    * !sn(!sn(!sn(0)))
+    * !sn(!sn(1))
+    * !sn(0)
+    * 1
+  * Exemplo 2:
+    * impar(4)
+    * !sn(P<sub>3</sub><sup>1</sup>(impar(3), 3))
+    * !sn(impar(3))
+    * !sn(!sn(P<sub>3</sub><sup>1</sup>(impar(2), 2)))
+    * !sn(!sn(impar(2)))
+    * !sn(!sn(!sn(P<sub>3</sub><sup>1</sup>(impar(1), 1))))
+    * !sn(!sn(!sn(impar(1))))
+    * !sn(!sn(!sn(!sn(P<sub>3</sub><sup>1</sup>(impar(0), 0)))))
+    * !sn(!sn(!sn(!sn(impar(0)))))
+    * !sn(!sn(!sn(!sn(0))))
+    * !sn(!sn(!sn(1)))
+    * !sn(!sn(0))
+    * !sn(1)
+    * 0
+* **Metade**:
+  * ÷(0) = 0
+  * ÷(n+1) =  
+
+
+Primitive Recursive Function: https://en.wikipedia.org/wiki/Primitive_recursive_function
