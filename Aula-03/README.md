@@ -163,51 +163,52 @@ Usando as funções anteriores conseguimos definir muitas coisas
   * Pred(n+1) = P<sub>2</sub><sup>2</sup>(f(n), n)
   * A função f é indiferente, pois você pega o segundo valor (n)
 * **Subtração limitada (Monus)**:
-  * SubL(0, x) = P<sub>1</sub><sup>1</sup>(x)
-  * SubL(n+1, x) = Pred(P<sub>3</sub><sup>1</sup>(SubL(n, x), n, x))
-  * É o por quanto você está subtraindo x, ou seja, o calculo é x - n
+  * ∸(0, x) = P<sub>1</sub><sup>1</sup>(x)
+  * ∸(n+1, x) = Pred(P<sub>3</sub><sup>1</sup>(∸(n, x), n, x))
   * É uma subtração limitada pois não pode ir abaixo de 0
+    * Normalmente 5 - 7 = 2, nesse caso 5 ∸ 7 = 0
+  * É o por quanto você está subtraindo x, ou seja, o calculo é x ∸ n
   * Exemplo:
-    * SubL(2, 3)
-    * Pred(P<sub>3</sub><sup>1</sup>(SubL(1, 3), 1, 3))
-    * Pred(SubL(1, 3))
-    * Pred(Pred(P<sub>3</sub><sup>1</sup>(SubL(0, 3), 0, 3)))
-    * Pred(Pred(SubL(0, 3)))
+    * ∸(2, 3)
+    * Pred(P<sub>3</sub><sup>1</sup>(∸(1, 3), 1, 3))
+    * Pred(∸(1, 3))
+    * Pred(Pred(P<sub>3</sub><sup>1</sup>(∸(0, 3), 0, 3)))
+    * Pred(Pred(∸(0, 3)))
     * Pred(Pred(3)) `sempre usando conhecimento anterior sem problema`
     * Pred(2)
     * 1
   * Exemplo 2:
-    * SubL(2, 1)
-    * Pred(P<sub>3</sub><sup>1</sup>(SubL(1, 1), 1, 1))
-    * Pred(SubL(1, 1))
-    * Pred(Pred(P<sub>3</sub><sup>1</sup>(SubL(0, 1), 0, 1)))
-    * Pred(Pred(SubL(0, 1)))
+    * ∸(2, 1)
+    * Pred(P<sub>3</sub><sup>1</sup>(∸(1, 1), 1, 1))
+    * Pred(∸(1, 1))
+    * Pred(Pred(P<sub>3</sub><sup>1</sup>(∸(0, 1), 0, 1)))
+    * Pred(Pred(∸(0, 1)))
     * Pred(Pred(1))
     * Pred(0)
     * 0
 * **Menor Igual**:
   * MenorI(0, x) = 1
-  * MenorI(n+1, x) = !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(n, x), n, x)), x))
+  * MenorI(n+1, x) = !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(n, x), n, x)), x))
   * A idéia é verificar se x < n + 1, vai retornar 1 se for e 0 se não for.
   * Exemplo:
     * MenorI(3, 2)
-    * !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 2), 2, 2)), 2))
-    * !sn(SubL(S(2), 2))
-    * !sn(SubL(3, 2))
+    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 2), 2, 2)), 2))
+    * !sn(∸(S(2), 2))
+    * !sn(∸(3, 2))
     * !sn(0)
     * 1
   * Exemplo 2:
     * MenorI(2, 3)
-    * !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(1, 3), 1, 3)), 3))
-    * !sn(SubL(S(1), 3))
-    * !sn(SubL(2, 3))
+    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(1, 3), 1, 3)), 3))
+    * !sn(∸(S(1), 3))
+    * !sn(∸(2, 3))
     * !sn(1)
     * 0
   * Exemplo 3:
     * MenorI(3, 3)
-    * !sn(SubL(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 3), 2, 3)), 3))
-    * !sn(SubL(S(2), 3))
-    * !sn(SubL(3, 3))
+    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 3), 2, 3)), 3))
+    * !sn(∸(S(2), 3))
+    * !sn(∸(3, 3))
     * !sn(0)
     * 1
 * **Estritamente Maior**:
@@ -237,16 +238,16 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * 0
 * **Diferença Absoluta**:
   * DifAbs(0, x) = x
-  * DifAbs(n+1, x) = +(SubL(S(P<sub>3</sub><sup>2</sup>(DifAbs(n, x), n, x)), x), SubL(x, S(n)))
+  * DifAbs(n+1, x) = +(∸(S(P<sub>3</sub><sup>2</sup>(DifAbs(n, x), n, x)), x), ∸(x, S(n)))
   * Isso faz nada mais que |a - b|
-  * Usando subtração limitada, melhor maneira de fazer isso é (a - b) + (b - a)
+  * Usando subtração limitada, melhor maneira de fazer isso é (a ∸ b) + (b ∸ a)
   * Exemplo:
     * DifAbs(2, 3)
-    * +(SubL(S(P<sub>3</sub><sup>2</sup>(DifAbs(1, 3), 1, 3)), 3), SubL(3, S(1)))
-    * +(SubL(S(1), 3), SubL(3, S(1)))
-    * +(SubL(2, 3), SubL(3, S(1)))
-    * +(SubL(2, 3), SubL(3, 2))
-    * +(1, SubL(3, 2))
+    * +(∸(S(P<sub>3</sub><sup>2</sup>(DifAbs(1, 3), 1, 3)), 3), ∸(3, S(1)))
+    * +(∸(S(1), 3), ∸(3, S(1)))
+    * +(∸(2, 3), ∸(3, S(1)))
+    * +(∸(2, 3), ∸(3, 2))
+    * +(1, ∸(3, 2))
     * +(1, 0)
     * 1
 * **Igualdade**:
@@ -272,11 +273,11 @@ Usando as funções anteriores conseguimos definir muitas coisas
   * impar(n+1) = !sn(P<sub>3</sub><sup>1</sup>(impar(n), n))
   * Exemplo:
     * impar(3)
-    * !sn(P<sub>3</sub><sup>1</sup>(impar(2), 2))
+    * !sn(P<sub>2</sub><sup>1</sup>(impar(2), 2))
     * !sn(impar(2))
-    * !sn(!sn(P<sub>3</sub><sup>1</sup>(impar(1), 1)))
+    * !sn(!sn(P<sub>2</sub><sup>1</sup>(impar(1), 1)))
     * !sn(!sn(impar(1)))
-    * !sn(!sn(!sn(P<sub>3</sub><sup>1</sup>(impar(0)), 0)))
+    * !sn(!sn(!sn(P<sub>2</sub><sup>1</sup>(impar(0)), 0)))
     * !sn(!sn(!sn(impar(0))))
     * !sn(!sn(!sn(0)))
     * !sn(!sn(1))
@@ -284,13 +285,13 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * 1
   * Exemplo 2:
     * impar(4)
-    * !sn(P<sub>3</sub><sup>1</sup>(impar(3), 3))
+    * !sn(P<sub>2</sub><sup>1</sup>(impar(3), 3))
     * !sn(impar(3))
-    * !sn(!sn(P<sub>3</sub><sup>1</sup>(impar(2), 2)))
+    * !sn(!sn(P<sub>2</sub><sup>1</sup>(impar(2), 2)))
     * !sn(!sn(impar(2)))
-    * !sn(!sn(!sn(P<sub>3</sub><sup>1</sup>(impar(1), 1))))
+    * !sn(!sn(!sn(P<sub>2</sub><sup>1</sup>(impar(1), 1))))
     * !sn(!sn(!sn(impar(1))))
-    * !sn(!sn(!sn(!sn(P<sub>3</sub><sup>1</sup>(impar(0), 0)))))
+    * !sn(!sn(!sn(!sn(P<sub>2</sub><sup>1</sup>(impar(0), 0)))))
     * !sn(!sn(!sn(!sn(impar(0)))))
     * !sn(!sn(!sn(!sn(0))))
     * !sn(!sn(!sn(1)))
@@ -299,7 +300,99 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * 0
 * **Metade**:
   * ÷(0) = 0
-  * ÷(n+1) =  
+  * ÷(n+1) =  +(P<sub>2</sub><sup>1</sup>(÷(n), n), impar(n))
+  * A idéia é fazer uma divisão que só retorna inteiro
+    * Se n for par vai retornar n/2
+    * Se n for impar vai retornar (n-1)/2
+  * A divisão por 2 é feita basicamente somando 1 para todos os números impares até o número desejado.
+  * Exemplo:  
+    * ÷(4)
+    * +(P<sub>2</sub><sup>1</sup>(÷(3), 3), impar(3))
+    * +(÷(3), impar(3))
+    * +(÷(3), 1)
+    * +(+(P<sub>2</sub><sup>1</sup>(÷(2), 2), impar(2)), 1)
+    * +(+(÷(2), impar(2)), 1)
+    * +(+(÷(2), 0), 1)
+    * +(+(+(P<sub>2</sub><sup>1</sup>(÷(1), 1), impar(1)), 0), 1)
+    * +(+(+(÷(1), impar(1)), 0), 1)
+    * +(+(+(÷(1), 1), 0), 1)
+    * +(+(+(+(÷(0), impar(0)), 1), 0), 1)
+    * +(+(+(+(÷(0), 0), 1), 0), 1)
+    * +(+(+(+(0, 0), 1), 0), 1)
+    * +(+(+(0, 1), 0), 1)
+    * +(+(1, 0), 1)
+    * +(1, 1)
+    * 2
+  * Exemplo 2:
+    * ÷(3)
+    * +(P<sub>2</sub><sup>1</sup>(÷(2), 2), impar(2))
+    * +(÷(2), impar(2))
+    * +(÷(2), 0)
+    * +(+(P<sub>2</sub><sup>1</sup>(÷(1), 1), impar(1)), 0)
+    * +(+(÷(1), impar(1)), 0)
+    * +(+(÷(1), 1), 0)
+    * +(+(+(P<sub>2</sub><sup>1</sup>(÷(0), 0), impar(0)), 1), 0)
+    * +(+(+(÷(0), impar(0)), 1), 0)
+    * +(+(+(÷(0), 0), 1), 0)
+    * +(+(+(0, 0), 1), 0)
+    * +(+(0, 1), 0)
+    * +(1, 0)
+    * 1
+* **Somatório**:
+  * ∑(0) = 0
+  * ∑(n+1) = +(∑(n),S(n))
+  * Simplesmente, ∑(n+1) = (n+1) + ∑n
+  * Exemplo:
+    * ∑(3)
+    * +(∑(2),S(2))
+    * +(∑(2),3)
+    * +(+(∑(1),S(1)),3)
+    * +(+(∑(1),2),3)
+    * +(+(+(∑(0),S(0)),2),3)
+    * +(+(+(∑(0),1),2),3)
+    * +(+(+(0,1),2),3)
+    * +(+(1,2),3)
+    * +(3,3)
+    * 6
+* **Máximo**:
+  * Max(0, x) = x
+  * Max(n+1, x) = +(∸(S(n), P<sub>2</sub><sup>2</sup>(Max(n, x), x)), S(n))
+  * Pegar o maior dos dois valores
+  * O calculo é x ∸ (n+1) + n+1
+  * Parece sem sentido se fosse subtração normal, mas com a limitada a gente consegue obter o mairo disso.
+    * x > (n+1) então o calculo da x
+    * x < (n+1) então o calculo da n+1
+    * x = (n+1) então o calculo da n+1 que vai ser o mesmo valor que x
+  * Exemplo:
+    * Max(3, 2)
+    * +(∸(S(2), P<sub>2</sub><sup>2</sup>(Max(2, 2), 2)), S(2))
+    * +(∸(S(2), 2), S(2))
+    * +(∸(3, 2), S(2))
+    * +(∸(3, 2), 3)
+    * +(0, 3)
+    * 3
+  * Exemplo 2:
+    * Max(2, 3)
+    * +(∸(S(1), P<sub>2</sub><sup>2</sup>(Max(1, 3), 3)), S(1))
+    * +(∸(S(1), 3), S(1))
+    * +(∸(2, 3), S(1))
+    * +(∸(2, 3), 2)
+    * +(1, 2)
+    * 3
+* **Máximo entre 3**
+  * Max3(0, y, z) = Max(y, z)
+  * Max3(n+1, y, z) = Max(S(P<sub>2</sub><sup>2</sup>(Max(n, y, z), n, y, z)), Max(y, z))
+  * Exemplo:
+    * Max3(3, 2, 1)
+    * Max(S(P<sub>2</sub><sup>2</sup>(Max(2, 2, 1), 2, 2, 1)), Max(2, 1))
+    * Max(S(2), Max(2, 1))
+    * Max(3, Max(2, 1)) `já sabemos calcular máximo entre 2 números`
+    * Max(3, 2)
+    * 3
 
 
-Primitive Recursive Function: https://en.wikipedia.org/wiki/Primitive_recursive_function
+29:14
+
+
+Primitive Recursive Function: https://en.wikipedia.org/wiki/Primitive_recursive_function  
+Primitive Recursive Functions Proof: https://proofwiki.org/wiki/Category:Primitive_Recursive_Functions  
