@@ -55,6 +55,8 @@ Para calcular o maior entre dois basta repetir o mesmo processo.
 * Max(0,y,z) = Max(y,z)  
 * Max(n+1,y,z) = Max(S(n), Max(y,z))  
 
+\---
+
 * Exemplo:
   * Max(1,2,3)
   * Max(S(0), Max(2,3))
@@ -97,6 +99,8 @@ Minha verificação de maior utiliza **menor igual**, minha verificação de igu
 
 * √(0) = 0  
 * √(n+1) = ifelse(Menor(Exp(2,S(√(n))),S(n)),√(n),S(√(n)))  
+
+\---
 
 * Exemplo:
   * √(4)
