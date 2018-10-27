@@ -187,54 +187,54 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * Pred(0)
     * 0
 * **Menor Igual**:
-  * MenorI(0, x) = !sn(x)
-  * MenorI(n+1, x) = !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(n, x), n, x)), x))
+  * MenorIgual(0, x) = !sn(x)
+  * MenorIgual(n+1, x) = !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorIgual(n, x), n, x)), x))
   * A idéia é verificar se x ≤ n + 1, vai retornar 1 se for e 0 se não for.
   * Exemplo:
-    * MenorI(3, 2)
-    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 2), 2, 2)), 2))
+    * MenorIgual(3, 2)
+    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorIgual(2, 2), 2, 2)), 2))
     * !sn(∸(S(2), 2))
     * !sn(∸(3, 2))
     * !sn(0)
     * 1
   * Exemplo 2:
-    * MenorI(2, 3)
-    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(1, 3), 1, 3)), 3))
+    * MenorIgual(2, 3)
+    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorIgual(1, 3), 1, 3)), 3))
     * !sn(∸(S(1), 3))
     * !sn(∸(2, 3))
     * !sn(1)
     * 0
   * Exemplo 3:
-    * MenorI(3, 3)
-    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 3), 2, 3)), 3))
+    * MenorIgual(3, 3)
+    * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorIgual(2, 3), 2, 3)), 3))
     * !sn(∸(S(2), 3))
     * !sn(∸(3, 3))
     * !sn(0)
     * 1
 * **Estritamente Maior**:
   * Maior(0, x) = 0
-  * Maior(n+1, x) = !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(n, x), n, x)), x))
+  * Maior(n+1, x) = !sn(MenorIgual(S(P<sub>3</sub><sup>2</sup>(Maior(n, x), n, x)), x))
   * x > n + 1
   * Usa a lógica do menor igual, se for verdade que é menor igual então claramente não é maior, caso contrario é maior.
   * Exemplo:
     * Maior(3, 2)
-    * !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(2, 2), 2, 2)), 2))
-    * !sn(MenorI(S(2), 2))
-    * !sn(MenorI(3, 2))
+    * !sn(MenorIgual(S(P<sub>3</sub><sup>2</sup>(Maior(2, 2), 2, 2)), 2))
+    * !sn(MenorIgual(S(2), 2))
+    * !sn(MenorIgual(3, 2))
     * !sn(1)
     * 0
   * Exemplo 2:
     * Maior(2, 3)
-    * !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(1, 3), 1, 3)), 3))
-    * !sn(MenorI(S(1), 3))
-    * !sn(MenorI(2, 3))
+    * !sn(MenorIgual(S(P<sub>3</sub><sup>2</sup>(Maior(1, 3), 1, 3)), 3))
+    * !sn(MenorIgual(S(1), 3))
+    * !sn(MenorIgual(2, 3))
     * !sn(0)
     * 1
   * Exemplo 3:
     * Maior(3, 3)
-    * !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(2, 3), 2, 3)), 3))
-    * !sn(MenorI(S(2), 3))
-    * !sn(MenorI(3, 3))
+    * !sn(MenorIgual(S(P<sub>3</sub><sup>2</sup>(Maior(2, 3), 2, 3)), 3))
+    * !sn(MenorIgual(S(2), 3))
+    * !sn(MenorIgual(3, 3))
     * !sn(1)
     * 0
 * **Diferença Absoluta**:
@@ -396,7 +396,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * +(∸(2, 3), 2)
     * +(1, 2)
     * 3
-* **Máximo entre 3**
+* **Máximo entre 3**:
   * Max3(0, y, z) = Max(y, z)
   * Max3(n+1, y, z) = Max(S(P<sub>4</sub><sup>2</sup>(Max(n, y, z), n, y, z)), Max(y, z))
   * Exemplo:
@@ -406,7 +406,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * Max(3, Max(2, 1)) `já sabemos calcular máximo entre 2 números`
     * Max(3, 2)
     * 3
-* **Divisão**  
+* **Divisão**:  
   * /(0, x) = 0
   * /(n+1, x) = +(1,/(∸(x, S(P<sub>3</sub><sup>2</sup>(/(n,x),n,x))), x))
   * 1 + ( (n+1 ∸ x) / x )  
@@ -438,7 +438,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * +(1,+(1,0))  
     * +(1,1)  
     * 2
-* **Resto**
+* **Resto**:
   * Res(0,x) = 0
   * Res(n+1,x) = ∸(∸(S(n),\*(/(S(n),x),x)), x)
   * x ∸ ( (n+1) / x) * x ) ∸ (n+1)
@@ -471,7 +471,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * ∸(6,\*(2,3))
     * ∸(6,6)
     * 0
-* **if else**
+* **if else**:
   * ifelse(0,x,y) = y
   * ifelse(n+1,x,y) = x
   * Escrevendo como código
@@ -494,7 +494,52 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * ifelse(2,+(1,1),+(1,2))
     * +(1,1)
     * 2
+* **Square**:
+  * √(0) = 0
+  * √(n+1) = ifelse(Menor(Exp(2,S(√(n))),S(n)),√(n),S(√(n)))
+  * Exemplo:
+    * √(4)
+    * ifelse(Menor(Exp(2,S(√(3))),S(3)),√(3),S(√(3)))
+    * ifelse(Menor(Exp(2,S(√(3))),4),√(3),S(√(3)))
+      * √(3)
+      * ifelse(Menor(Exp(2,S(√(2))),S(2)),√(2),S(√(2)))
+      * ifelse(Menor(Exp(2,S(√(2))),3),√(2),S(√(2)))
+        * √(2)
+        * ifelse(Menor(Exp(2,S(√(1))),S(1)),√(1),S(√(1)))
+        * ifelse(Menor(Exp(2,S(√(1))),2),√(1),S(√(1)))
+          * √(1)
+          * ifelse(Menor(Exp(2,S(√(0))),S(0)),√(0),S(√(0)))
+          * ifelse(Menor(Exp(2,S(√(0))),1),√(0),S(√(0)))
+          * ifelse(Menor(Exp(2,S(0)),1),√(0),S(√(0)))
+          * ifelse(Menor(Exp(2,S(0)),1),0,S(√(0)))
+          * ifelse(Menor(Exp(2,S(0)),1),0,S(0))
+          * ifelse(Menor(Exp(2,1),1),0,S(0))
+          * ifelse(Menor(Exp(2,1),1),0,1)
+          * ifelse(Menor(1,1),0,1)
+          * ifelse(0,0,1)
+          * 1
+        * ifelse(Menor(Exp(2,S(1)),2),1,S(1)) `vou começar a fazer rápido`
+        * ifelse(Menor(Exp(2,2),2),1,2)
+        * ifelse(Menor(4,2),1,2)
+        * ifelse(1,1,2)
+        * 1
+      * ifelse(Menor(Exp(2,S(1)),3),1,S(1))
+      * ifelse(Menor(Exp(2,2),3),1,2)
+      * ifelse(Menor(4,3),1,2)
+      * ifelse(1,1,2)
+      * 1
+    * ifelse(Menor(Exp(2,S(1)),4),1,S(1))
+    * ifelse(Menor(Exp(2,2),4),1,2)
+    * ifelse(Menor(4,4),1,2)
+    * ifelse(0,1,2)
+    * 2
 
+
+
+
+
+
+  * ifelse(sn(+(Maior(Exp(2,+(S(√(n)))),S(n)),Igual(Exp(2,+(S(√(n))))),S(n))),---,---)
 
 
 
@@ -538,4 +583,4 @@ Primitive Recursive Functions Proof: https://proofwiki.org/wiki/Category:Primiti
 
 Course Of Values: https://en.wikipedia.org/wiki/Course-of-values_recursion
 
-40:32
+59:56
