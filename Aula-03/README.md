@@ -533,13 +533,80 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * ifelse(Menor(4,4),1,2)
     * ifelse(0,1,2)
     * 2
-
-
-
-
-
-
-  * ifelse(sn(+(Maior(Exp(2,+(S(√(n)))),S(n)),Igual(Exp(2,+(S(√(n))))),S(n))),---,---)
+* **Primo**
+  * prime(0) = 0
+  * prime(n) = Igual(checkprime(n,S(n)),1)
+  * É primo se o número de multiplicações que formam ele for 1
+    * Estou verificando se vai retornar apenas 1
+  * checkprime(0,x) = 0
+  * checkprime(n+1,x) = ifelse(Igual(\*(S(n),/(S(n),x)),x),S(checkprime(n,x)),checkprime(n,x))
+    * Como a divisão pode retornar um inteiro incorreto, preciso verificar se é realmente um divisor
+      * Igual(\*(S(n),/(S(n),x)),x)
+    * Se for, soma um ao nosso calculo e depois que testar para todos os outros
+    * Se não, testa os outros
+      * ifelse(...,S(checkprime(n,x)),checkprime(n,x))
+  * Exemplo
+    * prime(5)
+    * Igual(checkprime(4,S(4)),1)
+    * Igual(checkprime(4,5),1)
+      * checkprime(4,5)
+      * ifelse(Igual(\*(S(3),/(S(3),5)),5),S(checkprime(3,5)),checkprime(3,5))
+      * ifelse(Igual(\*(4,/(4,5)),5),S(checkprime(3,5)),checkprime(3,5))
+      * ifelse(Igual(\*(4,2),5),S(checkprime(3,5)),checkprime(3,5))
+      * ifelse(Igual(8,5),S(checkprime(3,5)),checkprime(3,5))
+      * ifelse(0,S(checkprime(3,5)),checkprime(3,5))
+      * checkprime(3,5)
+      * ifelse(Igual(\*(S(2),/(S(2),5)),5),S(checkprime(2,5)),checkprime(2,5))
+      * ifelse(Igual(\*(3,/(3,5)),5),S(checkprime(2,5)),checkprime(2,5))
+      * ifelse(Igual(\*(3,2),5),S(checkprime(2,5)),checkprime(2,5))
+      * ifelse(Igual(6,5),S(checkprime(2,5)),checkprime(2,5))
+      * ifelse(0,S(checkprime(2,5)),checkprime(2,5))
+      * checkprime(2,5)
+      * ifelse(Igual(\*(S(1),/(S(1),5)),5),S(checkprime(1,5)),checkprime(1,5))
+      * ifelse(Igual(\*(2,/(2,5)),5),S(checkprime(1,5)),checkprime(1,5))
+      * ifelse(Igual(\*(2,3),5),S(checkprime(1,5)),checkprime(1,5))
+      * ifelse(Igual(6,5),S(checkprime(1,5)),checkprime(1,5))
+      * ifelse(0,S(checkprime(1,5)),checkprime(1,5))
+      * checkprime(1,5)
+      * ifelse(Igual(\*(S(0),/(S(0),5)),5),S(checkprime(0,5)),checkprime(0,5))
+      * ifelse(Igual(\*(1,/(1,5)),5),S(checkprime(0,5)),checkprime(0,5))
+      * ifelse(Igual(\*(1,5),5),S(checkprime(0,5)),checkprime(0,5))
+      * ifelse(Igual(5,5),S(checkprime(0,5)),checkprime(0,5))
+      * S(checkprime(0,5))
+      * S(0)
+      * 1
+    * Igual(1,1)
+    * 1
+  * Exemplo 2:
+    * prime(4)
+    * Igual(checkprime(3,S(3)),1)
+    * Igual(checkprime(3,4),1)
+      * checkprime(3,4)
+      * ifelse(Igual(\*(S(2),/(S(2),4)),4),S(checkprime(2,4)),checkprime(2,4))
+      * ifelse(Igual(\*(3,/(3,4)),4),S(checkprime(2,4)),checkprime(2,4))
+      * ifelse(Igual(\*(3,2),4),S(checkprime(2,4)),checkprime(2,4))
+      * ifelse(Igual(6,4),S(checkprime(2,4)),checkprime(2,4))
+      * ifelse(0,S(checkprime(2,4)),checkprime(2,4))
+      * checkprime(2,4)
+      * ifelse(Igual(\*(S(1),/(S(1),4)),4),S(checkprime(1,4)),checkprime(1,4))
+      * ifelse(Igual(\*(2,/(2,4)),4),S(checkprime(1,4)),checkprime(1,4))
+      * ifelse(Igual(\*(2,2),4),S(checkprime(1,4)),checkprime(1,4))
+      * ifelse(Igual(4,4),S(checkprime(1,4)),checkprime(1,4))
+      * ifelse(1,S(checkprime(1,4)),checkprime(1,4))
+      * S(checkprime(1,4))
+        * checkprime(1,4)
+        * ifelse(Igual(\*(S(0),/(S(0),4)),4),S(checkprime(0,4)),checkprime(0,4))
+        * ifelse(Igual(\*(1,/(1,4)),4),S(checkprime(0,4)),checkprime(0,4))
+        * ifelse(Igual(\*(1,4),4),S(checkprime(0,4)),checkprime(0,4))
+        * ifelse(Igual(4,4),S(checkprime(0,4)),checkprime(0,4))
+        * ifelse(1,S(checkprime(0,4)),checkprime(0,4))
+        * S(checkprime(0,4))
+        * S(0)
+        * 1
+      * S(1)
+      * 2
+    * Igual(2,1)
+    * 0
 
 
 
@@ -583,4 +650,4 @@ Primitive Recursive Functions Proof: https://proofwiki.org/wiki/Category:Primiti
 
 Course Of Values: https://en.wikipedia.org/wiki/Course-of-values_recursion
 
-59:56
+05-1:08:10

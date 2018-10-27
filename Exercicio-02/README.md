@@ -1,3 +1,5 @@
+Nome: Thiago Lages de Alencar
+
 ### 1a
 Como y é indiferente nessa função podemos ignora-lo.  
 
@@ -65,7 +67,7 @@ Para calcular o maior entre dois basta repetir o mesmo processo.
   * 3
 
 ### 1d
-Estou considerando que conseguio fazer **if else**   
+Estou considerando que consigo fazer **if else**   
 
 * ifelse(0,x,y) = y  
 * ifelse(n+1,x,y) = x   
@@ -211,3 +213,20 @@ Minha verificação de maior utiliza **menor igual**, minha verificação de igu
     * 2
   * Igual(2,1)
   * 0
+
+### 2
+
+Letra (a)  
+```
+INPUT X, K
+OUTPUT Z
+
+  Y ← X
+  Z ← 0
+
+  LOOP K DO
+    Z ← Y
+    Y ← Y * X
+  END
+END
+```
