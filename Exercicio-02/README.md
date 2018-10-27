@@ -78,6 +78,7 @@ Minha verificação de menor utiliza **maior** e **igual**
 * Maior(0, x) = 0  
 * Maior(n+1, x) = !sn(MenorIgual(S(n), x))  
 
+\---
 
 * Igual(0, x) = !sn(x)  
 * Igual(n+1, x) = !sn(DifAbs(S(n), x))  
@@ -87,6 +88,7 @@ Minha verificação de maior utiliza **menor igual**, minha verificação de igu
 * MenorIgual(0, x) = !sn(x)  
 * MenorIgual(n+1, x) = !sn(∸(S(n), x))  
 
+\---
 
 * DifAbs(0, x) = x
 * DifAbs(n+1, x) = +(∸(S(n), x), ∸(x, S(n)))  
@@ -137,6 +139,8 @@ Minha verificação de maior utiliza **menor igual**, minha verificação de igu
 
 * prime(0) = 0
 * prime(n) = Igual(checkprime(n,S(n)),1)
+
+\---
 
 * checkprime(0,x) = 0
 * checkprime(n+1,x) = ifelse(Igual(\*(S(n),/(S(n),x)),x),S(checkprime(n,x)),checkprime(n,x))
