@@ -261,14 +261,67 @@ Free Variables (FV)
 3) FV(λx.e) = FV(e) - {x}  
 
 Termo fechado: sem variáveis livres (FV(t) = ∅)  
-λxλy.x(yx(y y)x)y  
+**λxλy.x(yx(y y)x)y**  
 
 Combinador é uma λ-abstração com FV(t) = ∅  
-Notação e<sub>1</sub>[x -> e<sub>2</sub>]  
+Notação **e<sub>1</sub>[x -> e<sub>2</sub>]**  
 
-x[x -> e] = e  
+**x[x -> e] = e**  
 ou  
-y[x -> e] = y  
+**y[x -> e] = y**  
 
-(e<sub>1</sub> e<sub>2</sub>)[x -> e] = (e<sub>1</sub> [x -> e])(e<sub>2</sub> [x -> e])  
-46:03
+**(e<sub>1</sub> e<sub>2</sub>)[x -> e] = (e<sub>1</sub> [x -> e])(e<sub>2</sub> [x -> e])**  
+Provando:  
+((λx.x)(λx.yx))[x -> e] = (λx.e)(λx.ye)  
+(λx.x)[x -> e] (λx.yx)[x -> e] = (λx.e)(λx.ye)
+
+**(λx.e<sub>1</sub>)[x -> e] = λx.e<sub>1</sub>**  
+
+**(λy.e<sub>1</sub>)[x -> e<sub>2</sub>] = λy.(e<sub>1</sub>[x -> e<sub>2</sub>])**    
+Obs: y ∉ FV(e<sub>2</sub>)  
+
+Provando:  
+(λy.xy)[x -> e] = λy.ey  
+(λy.(xy[x -> e])) = λy.ey    
+
+
+**(λy.e<sub>1</sub>)[x -> e<sub>2</sub>] = λz.(e<sub>1</sub>[y -> z])[x -> e<sub>1</sub>]**  
+Onde z ∉ (FV(e<sub>2</sub>) ∪ FV(e<sub>1</sub>) ∪ {x})  
+
+## Semântica
+
+α - [alpha] - propaga substituição em λ-abstração  
+β - [beta] - aplicação + substituição  
+η - [eta] - extensionalidade  
+
+#### α-redução  
+(λx.e) ▻<sub>α</sub> λy(e[x -> y])  
+x ≠ y  
+
+Basicamente você está substituindo uma variável x por outra variável y.  
+Agora sua função é em cima de y.  
+
+#### β-redução
+(λx.e<sub>1</sub>)e<sub>2</sub> ▻<sub>β</sub> e<sub>1</sub>[x -> e<sub>2</sub>]  
+
+Basicamente você está substituindo uma variável x dentro de e<sub>1</sub> por e<sub>2</sub>.  
+
+#### η-redução
+Pares < 10 = {2, 4, 6, 8} `extencional`   
+{x ∈ N | ∃k, 2k = x ^ x < 10} `intencional`  
+
+(λx.e<sub>1</sub>x) ▻<sub>η</sub> e<sub>1</sub>  
+
+Basicamente você retira a variável x.  
+
+Notação:  
+▻: 1 passso de redução  
+▻<sup>\*</sup>: * passos de redução  
+
+Redex:  
+(λx.e<sub>1</sub>)e<sub>2</sub>  
+Por que é redex? Pois essa função pode ser **red**uzida, você troca e<sub>1</sub> por e<sub>2</sub> e retira lambda.  
+
+### Teorema Church-Rosser (Diamante)
+Se e ▻<sup>\*</sup> e' && e ▻<sup>\*</sup> e'',  
+então ∃e<sub>1</sub> tal que e' ▻<sup>\*</sup> e<sub>n</sub> && e'' ▻<sup>\*</sup> en

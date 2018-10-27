@@ -187,9 +187,9 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * Pred(0)
     * 0
 * **Menor Igual**:
-  * MenorI(0, x) = 1
+  * MenorI(0, x) = !sn(x)
   * MenorI(n+1, x) = !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(n, x), n, x)), x))
-  * A idéia é verificar se x < n + 1, vai retornar 1 se for e 0 se não for.
+  * A idéia é verificar se x ≤ n + 1, vai retornar 1 se for e 0 se não for.
   * Exemplo:
     * MenorI(3, 2)
     * !sn(∸(S(P<sub>3</sub><sup>2</sup>(MenorI(2, 2), 2, 2)), 2))
@@ -214,6 +214,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
 * **Estritamente Maior**:
   * Maior(0, x) = 0
   * Maior(n+1, x) = !sn(MenorI(S(P<sub>3</sub><sup>2</sup>(Maior(n, x), n, x)), x))
+  * x > n + 1
   * Usa a lógica do menor igual, se for verdade que é menor igual então claramente não é maior, caso contrario é maior.
   * Exemplo:
     * Maior(3, 2)
@@ -268,6 +269,22 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * !sn(DifAbs(3, 3))
     * !sn(0)
     * 1
+* **Estritamente Menor**
+  * Menor(0,x) = 0
+  * Menor(n+1,x) = !sn(+(Maior(S(n),x),Igual(S(n),P<sub>3</sub><sup>3</sup>(Menor(n,x),n,x))))
+  * x < n + 1
+  * Faz a soma do resultado da verificação de maior e da verificação de igualdade. Se a soma der maior que 0 é porque um deles é verdadeiro (x é maior ou igual a n+1), logo precisamos tornar o resultado 0 (false).
+  * Se os dois forem falso (x é menor que n+1), logo precisamos tornar o resultado 1 (true).
+  * Exemplo:
+    * Menor(3,3)
+    * !sn(+(Maior(S(2),3),Igual(S(2),P<sub>3</sub><sup>3</sup>(Menor(2,3),2,3))))
+    * !sn(+(Maior(S(2),3),Igual(S(2),3)))
+    * !sn(+(Maior(S(2),3),Igual(3,3)))
+    * !sn(+(Maior(3,3),Igual(3,3)))
+    * !sn(+(0,Igual(3,3)))
+    * !sn(+(0,1))
+    * !sn(1)
+    * 0
 * **Impar**:
   * impar(0) = 0
   * impar(n+1) = !sn(P<sub>3</sub><sup>1</sup>(impar(n), n))
@@ -356,7 +373,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * 6
 * **Máximo**:
   * Max(0, x) = x
-  * Max(n+1, x) = +(∸(S(n), P<sub>2</sub><sup>2</sup>(Max(n, x), x)), S(n))
+  * Max(n+1, x) = +(∸(S(n), P<sub>3</sub><sup>3</sup>(Max(n, x), n, x)), S(n))
   * Pegar o maior dos dois valores
   * O calculo é x ∸ (n+1) + n+1
   * Parece sem sentido se fosse subtração normal, mas com a limitada a gente consegue obter o mairo disso.
@@ -365,7 +382,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * x = (n+1) então o calculo da n+1 que vai ser o mesmo valor que x
   * Exemplo:
     * Max(3, 2)
-    * +(∸(S(2), P<sub>2</sub><sup>2</sup>(Max(2, 2), 2)), S(2))
+    * +(∸(S(2), P<sub>3</sub><sup>3</sup>(Max(2, 2), 2, 2)), S(2))
     * +(∸(S(2), 2), S(2))
     * +(∸(3, 2), S(2))
     * +(∸(3, 2), 3)
@@ -373,7 +390,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * 3
   * Exemplo 2:
     * Max(2, 3)
-    * +(∸(S(1), P<sub>2</sub><sup>2</sup>(Max(1, 3), 3)), S(1))
+    * +(∸(S(1), P<sub>3</sub><sup>3</sup>(Max(1, 3), 1, 3)), S(1))
     * +(∸(S(1), 3), S(1))
     * +(∸(2, 3), S(1))
     * +(∸(2, 3), 2)
@@ -381,18 +398,144 @@ Usando as funções anteriores conseguimos definir muitas coisas
     * 3
 * **Máximo entre 3**
   * Max3(0, y, z) = Max(y, z)
-  * Max3(n+1, y, z) = Max(S(P<sub>2</sub><sup>2</sup>(Max(n, y, z), n, y, z)), Max(y, z))
+  * Max3(n+1, y, z) = Max(S(P<sub>4</sub><sup>2</sup>(Max(n, y, z), n, y, z)), Max(y, z))
   * Exemplo:
     * Max3(3, 2, 1)
-    * Max(S(P<sub>2</sub><sup>2</sup>(Max(2, 2, 1), 2, 2, 1)), Max(2, 1))
+    * Max(S(P<sub>4</sub><sup>2</sup>(Max(2, 2, 1), 2, 2, 1)), Max(2, 1))
     * Max(S(2), Max(2, 1))
     * Max(3, Max(2, 1)) `já sabemos calcular máximo entre 2 números`
     * Max(3, 2)
     * 3
+* **Divisão**  
+  * /(0, x) = 0
+  * /(n+1, x) = +(1,/(∸(x, S(P<sub>3</sub><sup>2</sup>(/(n,x),n,x))), x))
+  * 1 + ( (n+1 ∸ x) / x )  
+  * Essa divisão arredonda para cima.
+  * n+1 é o numerador e x é o denominador.  
+  * Exemplo:  
+    * /(6,3)
+    * +(1,/(∸(3, S(P<sub>3</sub><sup>2</sup>(/(5,3),5,3))), 3))
+    * +(1,/(∸(3, S(5)), 3))
+    * +(1,/(∸(3, 6), 3))
+    * +(1,/(3, 3))
+    * +(1,+(1,/(∸(3, S(P<sub>3</sub><sup>2</sup>(/(2,3),2,3))), 3)))
+    * +(1,+(1,/(∸(3, S(2)), 3)))
+    * +(1,+(1,/(∸(3, 3), 3)))
+    * +(1,+(1,/(0, 3)))
+    * +(1,+(1,0))
+    * +(1,1)
+    * 2
+  * Exemplo 2:
+    * /(4,3)  
+    * +(1,/(∸(3, S(P<sub>3</sub><sup>2</sup>(/(3,x),3,3))), 3))  
+    * +(1,/(∸(3, S(3)), 3))  
+    * +(1,/(∸(3, 4), 3))  
+    * +(1,/(1, 3))  
+    * +(1,+(1,/(∸(3, S(P<sub>3</sub><sup>2</sup>(/(0,3),0,3))), 3)))  
+    * +(1,+(1,/(∸(3, S(0)), 3)))  
+    * +(1,+(1,/(∸(3, 1), 3)))  
+    * +(1,+(1,/(0, 3)))  
+    * +(1,+(1,0))  
+    * +(1,1)  
+    * 2
+* **Resto**
+  * Res(0,x) = 0
+  * Res(n+1,x) = ∸(∸(S(n),\*(/(S(n),x),x)), x)
+  * x ∸ ( (n+1) / x) * x ) ∸ (n+1)
+  * `Não mostrei a recursão 'Res(n,x), n, x' pois sempre acabava usando projeção para pegar apenas um deles, podemos pular essa etapa`
+    * Mas caso queira saber como que fica mostrando a projeção  
+    * Res(n+1,x) = ∸(∸(S(n),\*(/(S(n),x),x)), P<sub>3</sub><sup>3</sup>(Res(n,x),n, x))
+    * Note que eu sempre escolho um local qualquer para botar a projeção, apenas para respeitar o formato que tinha sido mostrado no inicio.
+      * f(n+1, ẍ) = g(f(n, ẍ), n, ẍ)
+  * Exemplo:
+    * Res(4,3)
+    * ∸(∸(S(3),\*(/(S(3),3),3)), 3)
+    * ∸(∸(4,\*(/(S(3),3),3)), 3)
+    * ∸(∸(4,\*(/(4,3),3)), 3)
+    * ∸(∸(4,\*(2,3)), 3)
+    * ∸(∸(4,6), 3)
+    * ∸(2, 3)
+    * 1
+  * Exemplo 2:
+    * Res(5,3)
+    * ∸(∸(S(4),\*(/(S(4),3),3)), 3) `resolvendo o sucessor de uma vez`
+    * ∸(∸(5,\*(/(5,3),3)), 3)
+    * ∸(∸(5,\*(2,3)), 3)
+    * ∸(∸(5,6), 3)
+    * ∸(1, 3)
+    * 2
+  * Exemplo 3:
+    * Res(6,3)
+    * ∸(S(5),\*(/(S(5),3),3))
+    * ∸(6,\*(/(6,3),3))
+    * ∸(6,\*(2,3))
+    * ∸(6,6)
+    * 0
+* **if else**
+  * ifelse(0,x,y) = y
+  * ifelse(n+1,x,y) = x
+  * Escrevendo como código
+    ```
+    if(n+1) {
+      x
+    } else {
+      y
+    }
+    ```
+    * Lembrando que em C 0 é *false* e qualquer outro número é *true*.
+  * Exemplo:
+    * ifelse(10,5,10)
+    * 5
+  * Exemplo 2:
+    * ifelse(0,5,10)
+    * 10
+  * Exemplo 3:
+    * ifelse(/(6,3),+(1,1),+(1,2))
+    * ifelse(2,+(1,1),+(1,2))
+    * +(1,1)
+    * 2
 
 
-29:14
+
 
 
 Primitive Recursive Function: https://en.wikipedia.org/wiki/Primitive_recursive_function  
 Primitive Recursive Functions Proof: https://proofwiki.org/wiki/Category:Primitive_Recursive_Functions  
+
+## Indução
+
+* **Função Fibonacci [1]**    
+  * Esse tipo de função requer duas bases fib(1) e fib(2), além disso a função sempre vai precisar olhar duas funções anteriores, precisamos de uma maneira de passar os valores das duas funções anteriores. Utilizamos vetores como retorno:    
+  * FIB(1) = (1, 0)  
+  * FIB(2) = (1, 1)  
+  * FIB(n+1) = (P<sub>2</sub><sup>1</sup>(FIB(n)) + P<sub>2</sub><sup>2</sup>(FIB(n)), P<sub>2</sub><sup>1</sup>(FIB(n)))  
+  * Pega o primeiro e segundo valor do FIB anterior, soma eles e deixa como sendo o primeiro valor do vetor.  
+  * Pega o primeiro valor do FIB anterior, deixa ele como segundo valor.
+  * Exemplo:  
+    * FIB(4)
+    * (P<sub>2</sub><sup>1</sup>(FIB(3)) + P<sub>2</sub><sup>2</sup>(FIB(3)), P<sub>2</sub><sup>1</sup>(FIB(3)))  
+      * FIB(3)
+      * (P<sub>2</sub><sup>1</sup>(FIB(2)) + P<sub>2</sub><sup>2</sup>(FIB(2)), P<sub>2</sub><sup>1</sup>(FIB(2)))  
+      * (P<sub>2</sub><sup>1</sup>(1,1) + P<sub>2</sub><sup>2</sup>(1,1), P<sub>2</sub><sup>1</sup>(1,1))  
+      * (1 + 1, 1)  
+      * (2, 1)  
+    * (P<sub>2</sub><sup>1</sup>(2,1) + P<sub>2</sub><sup>2</sup>(2,1), P<sub>2</sub><sup>1</sup>(2,1))  
+    * (2 + 1, 2)  
+    * (3, 2)  
+* **Função Fibonacci [2]**
+  * Com a função descoberta anteriormente podemos escrever uma função fibonacci que retorna apenas o primerio valor, assim reproduzindo a função fibonacci original.  
+  * fib(n) = P<sub>2</sub><sup>1</sup>(FIB(n))  
+  * Exemplo:  
+    * fib(1)
+    * P<sub>2</sub><sup>1</sup>(FIB(1))
+    * P<sub>2</sub><sup>1</sup>(1,0)
+    * 1
+  * Exemplo 2:
+    * fib(3)
+    * P<sub>2</sub><sup>1</sup>(FIB(3))
+    * P<sub>2</sub><sup>1</sup>(3,2)
+    * 3
+
+Course Of Values: https://en.wikipedia.org/wiki/Course-of-values_recursion
+
+40:32
