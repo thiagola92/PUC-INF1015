@@ -1,7 +1,8 @@
 ### 1a
 Como y é indiferente nessa função podemos ignora-lo.  
-f(x,0) = 1  
-f(x,n+1) =  Exp(f(x,n),x)  
+
+* f(x,0) = 1  
+* f(x,n+1) =  Exp(f(x,n),x)  
 
 Considerando que conseguimos fazer adição, multiplicação e exponencial como já resolvidos.  
 
@@ -28,8 +29,8 @@ Considerando que conseguimos fazer adição, multiplicação e exponencial como 
 Calcular o máximo entre dois números pode ser feito pelo seguinte calculo  
 x ∸ (n+1) + n+1  
 
-Max(0,x) = x  
-Max(n+1,x) = +(∸(S(n), x), S(n))  
+* Max(0,x) = x  
+* Max(n+1,x) = +(∸(S(n), x), S(n))  
 
 Isso considerando que já temos adição e monus.  
 
@@ -51,8 +52,8 @@ Isso considerando que já temos adição e monus.
 
 Para calcular o maior entre dois basta repetir o mesmo processo.  
 
-Max(0,y,z) = Max(y,z)  
-Max(n+1,y,z) = Max(S(n), Max(y,z))  
+* Max(0,y,z) = Max(y,z)  
+* Max(n+1,y,z) = Max(S(n), Max(y,z))  
 
 * Exemplo:
   * Max(1,2,3)
