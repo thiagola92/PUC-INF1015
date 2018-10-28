@@ -47,29 +47,6 @@ OUTPUT Y1
 END
 ```
 
-### Atenção
-
-Muita atenção pois isso  
-```
-X ← X + 1
-Y ← X
-```
-É o mesmo que  
-```
-INC(X)
-COPY(Y,X)
-```  
-Você pode acabar fazendo sem querer  
-```
-Y ← X + 1
-```
-Isso não é o mesmo de antes pois o X não é salvo como X+1 em momento nenhum   
-Além disso `COPY, INC, ZERO` apenas recebem variáveis, nunca comandos  
-```
-COPY(Y,INC(X))
-```
-Isto está errado /\\
-
 ## Primitiva Recursiva
 Queremos provar que Programação Imperativa faz tudo que Primitiva Recursiva e vice-versa.  
 Para isso vamos reproduzir as funções básicas em PL.  
@@ -185,3 +162,28 @@ END
 
 `MONUS(X,Y)`  
 Açúcar sintático: `X ∸ Y`  
+
+**if else**   
+```
+INPUT X1, X2, X3
+OUTPUT Y
+
+  Z ← 0
+  Z ← Z + 1
+
+  LOOP X1 DO
+    X1 ← 0
+    Z ← 0
+    Y ← X2
+  END
+
+  LOOP Z DO
+    Y ← X3
+  END
+END
+```
+
+`IFELSE(X,Y,Z)`  
+
+
+22:40
