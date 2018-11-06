@@ -168,16 +168,19 @@ Açúcar sintático: `X ∸ Y`
 INPUT X1, X2, X3
 OUTPUT Y
 
-  Z ← 0
-  Z ← Z + 1
-
+  I ← 0
+  E ← 1
+  
   LOOP X1 DO
-    X1 ← 0
-    Z ← 0
+    I ← 1
+    E ← 0
+  END
+  
+  LOOP I DO
     Y ← X2
   END
-
-  LOOP Z DO
+  
+  LOOP E DO
     Y ← X3
   END
 END
