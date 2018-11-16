@@ -613,6 +613,7 @@ Usando as funções anteriores conseguimos definir muitas coisas
 
 Primitive Recursive Function: https://en.wikipedia.org/wiki/Primitive_recursive_function  
 Primitive Recursive Functions Proof: https://proofwiki.org/wiki/Category:Primitive_Recursive_Functions  
+Playlist sobre assunto: https://www.youtube.com/watch?v=yaDQrOUK-KY&index=1&list=PLC-8dKj3F0NUnR8LeBGH3utAI9aQjFbi5  
 
 ## Indução
 
