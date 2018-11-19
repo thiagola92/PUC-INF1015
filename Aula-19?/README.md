@@ -2,7 +2,7 @@
 
 ## A General Theory of Algorithms
 
-Família abstrata de algoritmos  
+Família Abstrata de Algoritmos  
 ( ϕ <sub>i</sub> ) <sub>i ∈ N</sub>  
 ϕ <sub>i</sub> são funções parciais  
 ϕ <sub>i</sub> : ℕ → ℕ  
@@ -77,8 +77,10 @@ Uma função que recebe um par e devolve um outro par com x incrementado
 Q(<x,y>) = <x+1,y>  
 Dessa maneira você consegue representar qualquer par de números.  
 
-ϕ <sub>i</sub>(<x,y>) = ϕ <sub>0</sub>(i, <x,y>)  
+ϕ <sub>i</sub>(<x,y>) = ϕ <sub>u</sub>(i, <x,y>)    
 ϕ <sub>i</sub>(<x,y>) = ϕ <sub>s (i,x)</sub>(y)  
+
+*Obs: ϕ <sub>u</sub> é a função universal*   
 
 P e Q são funções recursivas então  
 ∃p,q tal que ϕ <sub>p</sub> = P e ϕ <sub>q</sub>  = Q  
@@ -110,6 +112,113 @@ c(R(x), i) = s(i, x)
 Logo s é recursiva  
 
 ### Evidência forte para tese church-turing  
+Tudo que é computável é turing computável  
+
 **Prop**:  
-Sejam
-27:54 computabilidade-19
+Sejam ϕ <sub>i</sub> e Ψ <sub>i</sub> duas Famílias Abstratas de Algoritmos, i ∈ ℕ  
+Então existe t : ℕ → ℕ recursiva, tal que ∀i  
+ϕ <sub>i</sub> = Ψ <sub>t(i)</sub>  
+
+Existe um programa i em ϕ e  
+Existe um programa em Ψ que faz a mesma coisa,  
+Você pode descobrir esse programa pela função t.  
+
+Em outras palavras, existe uma função t que liga o programa i em ϕ com um programa de Ψ  
+
+**Prova**:  
+ϕ <sub>i</sub>(x) = ϕ <sub>u</sub>(<i,x>)  
+Como ϕ <sub>u</sub> é parcial recursiva (item 2 sobre FAA)  
+Então existe u' ∈ ℕ, tal que  
+ϕ <sub>u</sub>(x) = Ψ <sub>u'</sub> (item 2 sobre FAA)  
+ϕ <sub>i</sub>(x) = ϕ <sub>u</sub>(<i,x>) = Ψ <sub>u'</sub>(<i,x>) = Ψ <sub>s(u',i)/t(i)</sub>(x)  
+
+Como u' é a função universal de Ψ,  
+Você pode fazer Ψ rodar o programa i com  
+Ψ <sub>s(u',i)</sub> `s é a função composição se não me engano`  
+Como <sub>s(u',i)</sub> é justamente a função que roda o programa i,  
+Essa é a função t que procuravamos que rodaria o programa ϕ <sub>i</sub>  
+Ψ <sub>s(u',i)</sub> = Ψ <sub>t(i)</sub>  
+
+ϕ <sub>i</sub>(x) = ϕ <sub>u</sub>(<i,x>) = Ψ <sub>u'</sub>(<i,x>) = Ψ <sub>s(u',i)/t(i)</sub>(x) = Ψ <sub>t(i)</sub>(x)  
+Ou seja  
+ϕ <sub>i</sub>(x) = Ψ <sub>t(i)</sub>(x)   
+
+## Teorema de Recursão  
+
+Se ϕ <sub>i</sub> (i ∈ ℕ) uma FAA's e f uma função recursiva, então existe p ∈ ℕ, tal que  
+ϕ <sub>p</sub> = ϕ <sub>f(p)</sub>  
+
+Pensando em f como uma função que recebe um código e devolve um outro código, então existe um programa que é inalterado quando passado por essa função  
+
+A função fatorial  
+fat(0) = 1  
+fat(n) = n * fat(n-1)  
+
+f(fat) = fat  
+ϕ <sub>f(fat)</sub> = ϕ <sub>fat</sub>   
+
+---
+
+Seja f parcial recursiva  
+Quantas máquinas de turing diferente nós temos que implementam f?  
+Infinitas, pois você pode sempre acrescentar código inutil  
+
+Para máquina de turing, sabemos que ∃m tal que  
+ϕ <sub>m</sub> = f  
+|{ m / ϕ <sub>m</sub> = f }| = |ℕ|  
+
+### Evidência forte para tese church-turing
+**Prop**:  
+Sejam ϕ <sub>i</sub> e Ψ <sub>i</sub> duas Famílias Abstratas de Algoritmos, i ∈ ℕ  
+Então existe t : ℕ → ℕ recursiva, tal que ∀i  
+ϕ <sub>j</sub> = Ψ <sub>t(j)</sub> = Ψ <sub>s(i,j)</sub>   
+
+|F<sub>i</sub>| = |{ j / ϕ <sub>i</sub> }| = |ℕ|  
+
+**Prova?**:  
+Máquina de turing = Ψ <sub>i</sub> (i ∈ ℕ)  
+Existe PAD recursiva, tal que ∀i,∀n  
+Ψ <sub>PAD(i, n)</sub> = Ψ <sub>i</sub>  
+e PAD(i, n) ≠ PAD(i, n'), se n = n'  
+
+PAD é uma função que recebe uma função i e um número n de estados para acrescentar a função i, PAD devolve o mesmo resultado que a função i iria retornar normalmente.  
+Basicamente PAD é uma função que acrescenta estados que não alteram o comportamento da função i.  
+Imagine acrescentar na função i um estado que tudo que faz é apontar para si mesmo novamente ou coisa do tipo...  
+
+Exemplo:  
+g(x) = x, recebe x e retorna x  
+g(f(x)) = f(x), recebe f(x) e retorna mesma coisa que f(x) retornaria  
+
+PAD acrescenta n estados inuteis, ou seja, PAD(f,3)  
+PAD(f,3) = g(g(g(f(x)))) = g(g(f(x))) = g(f(x)) = f(x)  
+
+## Função injetiva
+Seja ϕ <sub>h</sub> (h : ℕ → ℕ), h recursiva  
+Então existe i ∈ ℕ tal que  
+ϕ <sub>h(x)</sub> = ϕ <sub>s(i,x)</sub>  
+E se s(i,x) = s(i,x') então x = x'  
+Existe i tal que  
+
+* ϕ <sub>s(j,y)</sub> = 0, se
+  * ∃k < j [s(i,k) = s(i,j)]  
+* ϕ <sub>s(j,y)</sub> = 1, se
+  * ∀k < j [s(i,k) ≠ s(i,j)]
+  * ∃k ≤ y [k > j ^ s(i,k) = s(i,j)]  
+* ϕ <sub>s(j,y)</sub> = ϕ <sub>h(j)</sub>(y), caso contrário
+
+Ou seja  
+
+ϕ <sub>s(j,y)</sub> =
+* 0
+  * Procura de 0 até j-1 alguém que de o mesmo resultado que s(i,j)  
+* 1
+  * Se ninguém de 0 até j-1 da o mesmo resultado que s(i,j)
+  * Procura entre j e y alguém que de o mesmo resultado que s(i,j)  
+* ϕ <sub>h(j)</sub>(y)
+  * Caso nenhum dos casos acima, roda h que é uma função recursiva que sempre para.  
+
+
+A função h é uma recursiva qualquer que altera o programa.   
+A função s é injetiva no segundo argumento, só existe uma combinação de i e x que levam a um valor.  
+
+Página 112 do Livro no Site  
