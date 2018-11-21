@@ -238,4 +238,8 @@ Página 112 do Livro no Site
 **Função Recursiva Primitiva**: Uma função onde o unico tipo de loop que existe são aqueles que executam uma quantidade pré determinada.  
 `for 1 to 10 do { ... }`  
 
+↑ é sinal de "não para"  
+↓ é sinal de "para"  
+ϕ <sub>i</sub> ↓ `programa i para`  
+
 Difference between total recursive and primitive recursive functions: https://math.stackexchange.com/questions/75296/what-is-the-difference-between-total-recursive-and-primitive-recursive-functions
