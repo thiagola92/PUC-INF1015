@@ -170,16 +170,16 @@ OUTPUT Y
 
   I ← 0
   E ← 1
-  
+
   LOOP X1 DO
     I ← 1
     E ← 0
   END
-  
+
   LOOP I DO
     Y ← X2
   END
-  
+
   LOOP E DO
     Y ← X3
   END

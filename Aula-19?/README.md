@@ -11,14 +11,14 @@ Família Abstrata de Algoritmos
   * {f / f é parcial recursiva} ⊆ 𝕌 <sub>i ∈ N</sub> {ϕ <sub>i</sub>}
 * 2)
   * ∃<sub>M</sub> ∈ ℕ
-    * ϕ <sub>M</sub> é parcial recursiva
-    * ϕ <sub>M</sub>(<i,x>) = ϕ <sub>i</sub>(x)
+    * ϕ <sub>U</sub> é parcial recursiva
+    * ϕ <sub>U</sub>(<i,x>) = ϕ <sub>i</sub>(x)
       * Basicamente essa função recebe o programa i e o dado x
       * Depois roda o como se fosse o programa i no dado de x
       * Em outras palavras, uma máquina que simula outra
         * Isso é uma função universal
 * 3)
-  * ∃<sub>C</sub> : Wxℕ → ℕ e recursiva
+  * ∃<sub>C</sub> : ℕxℕ → ℕ e recursiva
     * V<sub>i, j</sub>
     * ϕ<sub>C (i,j)</sub> = ϕ<sub>j</sub> ∘ ϕ<sub>i</sub>
       * A composição de duas funções, pegar os dados finais de uma função e botar em outra função  
@@ -111,7 +111,7 @@ Com isso mostramos que é recursiva
 c(R(x), i) = s(i, x)  
 Logo s é recursiva  
 
-### Evidência forte para tese church-turing  
+## Teorema da Traução
 Tudo que é computável é turing computável  
 
 **Prop**:  
@@ -126,6 +126,8 @@ Você pode descobrir esse programa pela função t.
 Em outras palavras, existe uma função t que liga o programa i em ϕ com um programa de Ψ  
 
 **Prova**:  
+(Evidência forte para tese church-turing)  
+
 ϕ <sub>i</sub>(x) = ϕ <sub>u</sub>(<i,x>)  
 Como ϕ <sub>u</sub> é parcial recursiva (item 2 sobre FAA)  
 Então existe u' ∈ ℕ, tal que  
@@ -167,7 +169,7 @@ Para máquina de turing, sabemos que ∃m tal que
 ϕ <sub>m</sub> = f  
 |{ m / ϕ <sub>m</sub> = f }| = |ℕ|  
 
-### Evidência forte para tese church-turing
+## Teorema da Tradução Injetiva
 **Prop**:  
 Sejam ϕ <sub>i</sub> e Ψ <sub>i</sub> duas Famílias Abstratas de Algoritmos, i ∈ ℕ  
 Então existe t : ℕ → ℕ recursiva, tal que ∀i  
@@ -176,6 +178,8 @@ Então existe t : ℕ → ℕ recursiva, tal que ∀i
 |F<sub>i</sub>| = |{ j / ϕ <sub>i</sub> }| = |ℕ|  
 
 **Prova?**:  
+(Evidência forte para tese church-turing)  
+
 Máquina de turing = Ψ <sub>i</sub> (i ∈ ℕ)  
 Existe PAD recursiva, tal que ∀i,∀n  
 Ψ <sub>PAD(i, n)</sub> = Ψ <sub>i</sub>  
@@ -222,3 +226,16 @@ A função h é uma recursiva qualquer que altera o programa.
 A função s é injetiva no segundo argumento, só existe uma combinação de i e x que levam a um valor.  
 
 Página 112 do Livro no Site  
+
+## Teorema do Isomorfismo de Rogers
+
+42:29 aula-20
+
+# Observação
+
+**Função Recursiva Total**: Uma função que sempre termina  
+
+**Função Recursiva Primitiva**: Uma função onde o unico tipo de loop que existe são aqueles que executam uma quantidade pré determinada.  
+`for 1 to 10 do { ... }`  
+
+Difference between total recursive and primitive recursive functions: https://math.stackexchange.com/questions/75296/what-is-the-difference-between-total-recursive-and-primitive-recursive-functions
