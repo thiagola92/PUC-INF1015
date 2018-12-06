@@ -10,7 +10,7 @@ Verifica se todos os programas abaixo de x param, se um deles não parar então 
 F seria uma função que altera o programa para retornar o oposto  
 Se retorna TRUE, agora retorna FALSE  
 Se retorna FALSE, agora retorna TRUE  
-```lua
+```
 function F(input)
   return not input()
 end
@@ -18,7 +18,7 @@ end
 
 Programa i retorna sempre TRUE  
 ϕ <sub>i</sub>(n) = TRUE  
-```lua
+```
 function i(n)
   return true
 end
