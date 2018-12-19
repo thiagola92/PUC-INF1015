@@ -102,6 +102,7 @@ If P2 is decidable, then it must be that P1 is decidable. -- verdadeiro
 "Is L(H) contained in L(G)?" is decidable. -- falso  
 
 "Is L(G) contained in L(R)?" is decidable. -- verdadeiro  
+"Is L(G) intersect L(H) equal to (0+1)\*?" is undecidable. -- verdadeiro  
 
 ---
 
