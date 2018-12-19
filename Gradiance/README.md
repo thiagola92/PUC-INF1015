@@ -61,6 +61,10 @@ Utilizando a segunda informação você sabe que essa máquina não tem como pas
 
 ![18](18.png)  
 
+---
+
+![19](19.PNG)  
+
 # Primitivas Recursivas e primeiras noções
 
 ![6](6.png)  
