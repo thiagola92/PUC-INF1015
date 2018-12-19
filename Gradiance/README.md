@@ -1,3 +1,21 @@
+# Chapter 09: Undecidabilty
+# ou
+# Maquinas de Turing, Conjuntos Recursivos e R.E. , Teorema de Rice
+
+![9](9.png)  
+
+![12](12.png)  
+
+![17](17.png)  
+
+---  
+
+![10](10.png)  
+
+![18f](18f.png)  
+
+---
+
 ![1](1.png)  
 
 Troca 0 por 1  
@@ -32,3 +50,29 @@ Utilizando a segunda informação você sabe que essa máquina não tem como pas
 10q10110 - tem 1 antes do q, elimina por causa da informação **1**  
 
 ---  
+
+![11](11.png)  
+
+---  
+
+![13](13.png)  
+
+![14](14.png)  
+
+![18](18.png)  
+
+# Primitivas Recursivas e primeiras noções
+
+![6](6.png)  
+
+---
+
+![7](7.png)  
+
+---
+
+![8](8.png)  
+
+---
+
+![15](15.png)  
