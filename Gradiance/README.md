@@ -64,9 +64,17 @@ Utilizando a segunda informação você sabe que essa máquina não tem como pas
 
 ![13](13.png)  
 
-![14](14.png)  
+If P1 is RE, then it must be that P2 is RE. -- falso  
+If P2 is non-RE, then it must be that P1 is non-RE. -- falso  
+If P1 is decidable, then it must be that P2 is undecidable. -- falso  
+If P2 is decidable, then it must be that P1 is undecidable. -- falso  
+If P1 is undecidable, then it must be that P2 is decidable. -- falso  
+If P2 is undecidable, then it must be that P1 is decidable. -- falso  
+If P2 is undecidable, then it must be that P1 is undecidable. -- falso  
 
-![18](18.png)  
+If P2 is RE, then it must be that P1 is RE. -- verdadeiro  
+If P1 is undecidable, then it must be that P2 is undecidable. -- verdadeiro    
+If P2 is decidable, then it must be that P1 is decidable. -- verdadeiro    
 
 ---
 
