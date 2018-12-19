@@ -99,6 +99,10 @@ If P2 is decidable, then it must be that P1 is decidable. -- verdadeiro
 
 "Is L(G) contained in L(R)?" is decidable. -- verdadeiro  
 
+---
+
+![20](20.PNG)  
+
 # Primitivas Recursivas e primeiras noções
 
 ![6](6.png)  
