@@ -13,6 +13,7 @@
 ![10](10.png)  
 
 (\*$, $) - incorreto  
+(0\*1, \*0\*1\*0) - incorreto  
 (0\*1\*, \*0\*1\*0\*) - incorreto  
 (\*1\*1, 1\*1\*0\*) - incorreto  
 (\*0\*1, 0\*1\*0\*) - incorreto  
