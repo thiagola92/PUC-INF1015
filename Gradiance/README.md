@@ -80,6 +80,15 @@ If P2 is decidable, then it must be that P1 is decidable. -- verdadeiro
 
 ![19](19.PNG)  
 
+"Is L(G) = L(R)?" is decidable. -- falso  
+"Is Comp(L(G)) empty?" is decidable. -- falso  
+"Is Comp(L(G)) equal to (0+1)\*?" is undecidable. -- falso  
+"Is L(G) contained in L(H)?" is decidable. -- falso  
+"Is L(R) contained in L(G)?" is decidable. -- falso  
+"Is L(H) contained in L(G)?" is decidable. -- falso  
+
+"Is L(G) contained in L(R)?" is decidable. -- verdadeiro  
+
 # Primitivas Recursivas e primeiras noções
 
 ![6](6.png)  
