@@ -15,11 +15,13 @@
 (\*$, $) - incorreto  
 (0\*1, \*0\*1\*0) - incorreto  
 (0\*1\*, \*0\*1\*0\*) - incorreto  
+(1\*1, \*1\*1\*0) - incorreto  
 (\*1\*1, 1\*1\*0\*) - incorreto  
 (\*0\*1, 0\*1\*0\*) - incorreto  
 (\*1\*1\*, \*1\*1\*0) - incorreto  
 
 (0\*1\*, \*0\*1\*0) - correto  
+(\*0\*1\*, \*0\*1\*0) - correto  
 
 ---
 
@@ -59,6 +61,14 @@ Utilizando a segunda informação você sabe que essa máquina não tem como pas
 ---  
 
 ![11](11.png)  
+
+L4 is recursive -- falso  
+L2 is not recursive. -- falso  
+L3 is recursive. -- falso  
+The intersection of L2 and L3 is not recursively enumerable. -- falso
+
+The complement of L2 is recursive. -- verdadeiro
+L3 is recursive enumerable. -- verdadeiro    
 
 ---  
 
