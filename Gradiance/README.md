@@ -12,6 +12,7 @@
 
 ![10](10.png)  
 
+($, $\*) - incorreto  
 (\*$, $) - incorreto  
 (0\*1, \*0\*1\*0) - incorreto  
 (0\*1\*, \*0\*1\*0\*) - incorreto  
@@ -65,9 +66,11 @@ Utilizando a segunda informação você sabe que essa máquina não tem como pas
 L4 is recursive -- falso  
 L2 is not recursive. -- falso  
 L3 is recursive. -- falso  
-The intersection of L2 and L3 is not recursively enumerable. -- falso
+The intersection of L2 and L3 is not recursively enumerable. -- falso  
+The union of L2 and L3 is not recursively enumerable. -- falso  
+L4 is not recursive but cannot be proved so by Rice's Theorem. -- falso  
 
-The complement of L2 is recursive. -- verdadeiro
+The complement of L2 is recursive. -- verdadeiro  
 L3 is recursive enumerable. -- verdadeiro    
 
 ---  
@@ -91,6 +94,7 @@ If P2 is decidable, then it must be that P1 is decidable. -- verdadeiro
 ![19](19.PNG)  
 
 "Is L(G) = L(R)?" is decidable. -- falso  
+"Is L(G) = L(H)?" is decidable. -- falso  
 "Is Comp(L(G)) empty?" is decidable. -- falso  
 "Is Comp(L(G)) equal to (0+1)\*?" is undecidable. -- falso  
 "Is L(G) contained in L(H)?" is decidable. -- falso  
@@ -102,6 +106,15 @@ If P2 is decidable, then it must be that P1 is decidable. -- verdadeiro
 ---
 
 ![20](20.PNG)  
+
+(0, 0) -- falso  
+(#, #) -- falso  
+(#, #q001#) -- falso  
+(r##, #) -- falso  
+(r1, r) -- falso  
+
+(q0, 1p) -- verdadeiro  
+(p##, #) -- verdadeiro  
 
 # Primitivas Recursivas e primeiras noções
 
