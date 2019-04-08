@@ -1,6 +1,10 @@
-# Chapter 09: Undecidabilty
-# ou
-# Maquinas de Turing, Conjuntos Recursivos e R.E. , Teorema de Rice
+# Gradiance
+**ATENÇÃO**: Tente fazer e entender as questões do Gradiance antes de ler esse documento.  
+
+Nessa página você irá encontrar as respostas com explicações delas  
+Esse github não providência as respostas sem explicações[.](https://github.com/thiagola92/PUC-INF1015/tree/0a21d31cd10dd1b2e7df2e0877fe30bb70401440/Gradiance)  
+
+---
 
 ![4](4.png)  
 
